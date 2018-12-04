@@ -3,10 +3,15 @@ import * as React from 'react';
 interface IProps {
   onEnterView: () => void;
   onExitView: () => void;
-  throttle: number | undefined;
+  throttle: number;
 }
 
 export class InViewListener extends React.Component<IProps> {
+  public static defaultProps = {
+    onEnterView: () => null,
+    onExitView: () => null,
+    throttle: 100,
+  };
   public canUpdate = true;
 
   public state = {
@@ -47,10 +52,7 @@ export class InViewListener extends React.Component<IProps> {
         }
       }
       this.canUpdate = false;
-      setTimeout(
-        () => (this.canUpdate = true),
-        this.props.throttle ? this.props.throttle : 100,
-      );
+      setTimeout(() => (this.canUpdate = true), this.props.throttle);
     }
   };
 
