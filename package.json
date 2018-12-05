@@ -1,6 +1,6 @@
 {
   "name": "react-enter-view",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React component that monitors when children enter and exit the viewport.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
