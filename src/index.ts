@@ -3,17 +3,13 @@ import * as React from 'react';
 interface IProps {
   onEnterView: () => void;
   onExitView: () => void;
-  throttle: number;
 }
 
 export class Monitor extends React.Component<IProps> {
   public static defaultProps = {
     onEnterView: () => null,
     onExitView: () => null,
-    throttle: 100,
   };
-
-  public canUpdate = true;
 
   public state = {
     inView: false,
@@ -43,18 +39,14 @@ export class Monitor extends React.Component<IProps> {
   }
 
   private handleScroll = () => {
-    if (this.canUpdate) {
-      const inView = this.checkInView();
-      if (inView !== this.state.inView) {
-        this.setState({ inView });
-        if (inView) {
-          this.props.onEnterView();
-        } else {
-          this.props.onExitView();
-        }
+    const inView = this.checkInView();
+    if (inView !== this.state.inView) {
+      this.setState({ inView });
+      if (inView) {
+        this.props.onEnterView();
+      } else {
+        this.props.onExitView();
       }
-      this.canUpdate = false;
-      setTimeout(() => (this.canUpdate = true), this.props.throttle);
     }
   };
 
