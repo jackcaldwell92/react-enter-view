@@ -11,9 +11,7 @@ export class Monitor extends React.Component<IProps> {
     onExitView: () => null,
   };
 
-  public state = {
-    inView: false,
-  };
+  private inView = false;
 
   private childrenRef = React.createRef<HTMLDivElement>();
 
@@ -39,10 +37,10 @@ export class Monitor extends React.Component<IProps> {
   }
 
   private handleScroll = () => {
-    const inView = this.checkInView();
-    if (inView !== this.state.inView) {
-      this.setState({ inView });
-      if (inView) {
+    const newInView = this.checkInView();
+    if (newInView !== this.inView) {
+      this.inView = newInView;
+      if (newInView) {
         this.props.onEnterView();
       } else {
         this.props.onExitView();
