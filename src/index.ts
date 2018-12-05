@@ -6,12 +6,13 @@ interface IProps {
   throttle: number;
 }
 
-export class InViewListener extends React.Component<IProps> {
+export class Monitor extends React.Component<IProps> {
   public static defaultProps = {
     onEnterView: () => null,
     onExitView: () => null,
     throttle: 100,
   };
+  
   public canUpdate = true;
 
   public state = {
