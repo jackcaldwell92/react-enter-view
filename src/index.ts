@@ -12,7 +12,7 @@ export class Monitor extends React.Component<IProps> {
     onExitView: () => null,
     throttle: 100,
   };
-  
+
   public canUpdate = true;
 
   public state = {
@@ -33,6 +33,7 @@ export class Monitor extends React.Component<IProps> {
     // Check if child node is already in view.
     const inView = this.checkInView();
     if (inView) {
+      this.setState({ inView: true });
       this.props.onEnterView();
     }
   }
